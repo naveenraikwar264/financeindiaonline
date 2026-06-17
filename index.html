@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Finance India Online - simple personal finance information for Indian users: saving, budgeting, loans, insurance, tax basics and investment awareness." />
+  <title>Finance India Online | Personal Finance Information</title>
+  <style>
+    :root {
+      --primary: #0f5132;
+      --secondary: #198754;
+      --accent: #f4b400;
+      --dark: #17212b;
+      --muted: #637083;
+      --bg: #f7faf9;
+      --card: #ffffff;
+      --border: #e6ede9;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--dark);
+      background: var(--bg);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .topbar {
+      background: #0b3d27;
+      color: white;
+      font-size: 14px;
+      padding: 8px 20px;
+      text-align: center;
+    }
+
+    header {
+      background: white;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .nav {
+      max-width: 1120px;
+      margin: auto;
+      padding: 14px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      font-size: 20px;
+      color: var(--primary);
+    }
+
+    .logo {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+    }
+
+    .navlinks {
+      display: flex;
+      gap: 18px;
+      font-size: 15px;
+      color: #334155;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #0f5132 0%, #198754 55%, #20c997 100%);
+      color: white;
+      padding: 70px 20px;
+    }
+
+    .hero-inner {
+      max-width: 1120px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 35px;
+      align-items: center;
+    }
+
+    .hero h1 {
+      font-size: clamp(34px, 5vw, 58px);
+      line-height: 1.08;
+      margin: 0 0 18px;
+    }
+
+    .hero p {
+      font-size: 18px;
+      max-width: 680px;
+      opacity: 0.95;
+    }
+
+    .hero-actions {
+      margin-top: 28px;
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 20px;
+      border-radius: 999px;
+      font-weight: 700;
+      transition: 0.2s ease;
+    }
+
+    .btn-primary { background: var(--accent); color: #1f2937; }
+    .btn-light { background: white; color: var(--primary); }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(0,0,0,0.12); }
+
+    .hero-card {
+      background: rgba(255,255,255,0.14);
+      border: 1px solid rgba(255,255,255,0.28);
+      backdrop-filter: blur(8px);
+      border-radius: 24px;
+      padding: 26px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.18);
+    }
+
+    .hero-card h3 { margin-top: 0; font-size: 24px; }
+    .hero-card ul { padding-left: 20px; margin-bottom: 0; }
+
+    section {
+      max-width: 1120px;
+      margin: auto;
+      padding: 58px 20px;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    .section-title h2 {
+      font-size: 32px;
+      margin: 0 0 10px;
+      color: var(--primary);
+    }
+
+    .section-title p {
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 24px;
+      box-shadow: 0 10px 30px rgba(15,81,50,0.06);
+    }
+
+    .card h3 {
+      margin-top: 0;
+      color: var(--primary);
+      font-size: 20px;
+    }
+
+    .tag {
+      display: inline-block;
+      background: #e9f7ef;
+      color: var(--primary);
+      padding: 5px 10px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .calculator {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 24px;
+    }
+
+    label {
+      display: block;
+      font-weight: 700;
+      margin: 12px 0 6px;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #cbd5e1;
+      border-radius: 12px;
+      font-size: 16px;
+    }
+
+    .result {
+      margin-top: 18px;
+      padding: 16px;
+      background: #e9f7ef;
+      border-radius: 14px;
+      color: var(--primary);
+      font-weight: 800;
+      font-size: 19px;
+    }
+
+    .notice {
+      background: #fff8e1;
+      border: 1px solid #ffe08a;
+      color: #5f4100;
+      border-radius: 18px;
+      padding: 18px;
+      margin-top: 25px;
+    }
+
+    .cta {
+      background: linear-gradient(135deg, #102a43, #0f5132);
+      color: white;
+      border-radius: 28px;
+      padding: 36px;
+      text-align: center;
+    }
+
+    footer {
+      background: #0b3d27;
+      color: white;
+      padding: 28px 20px;
+      text-align: center;
+      font-size: 14px;
+    }
+
+    footer p { margin: 6px 0; opacity: 0.92; }
+
+    @media (max-width: 850px) {
+      .hero-inner, .split, .grid { grid-template-columns: 1fr; }
+      .nav { align-items: flex-start; flex-direction: column; }
+      .navlinks { justify-content: flex-start; }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">Educational finance information for India. Not investment advice.</div>
+
+  <header>
+    <nav class="nav">
+      <a class="brand" href="#top" aria-label="Finance India Online Home">
+        <span class="logo">₹</span>
+        <span>Finance India Online</span>
+      </a>
+      <div class="navlinks">
+        <a href="#basics">Finance Basics</a>
+        <a href="#tools">Calculator</a>
+        <a href="#checklist">Checklist</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero-inner">
+        <div>
+          <h1>Simple finance information for better money decisions.</h1>
+          <p>Learn the basics of budgeting, saving, loans, insurance, tax planning and long-term investing in simple Indian context.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#basics">Start Learning</a>
+            <a class="btn btn-light" href="#tools">Use SIP Calculator</a>
+          </div>
+        </div>
+        <div class="hero-card">
+          <h3>What you will learn</h3>
+          <ul>
+            <li>How to plan monthly budget</li>
+            <li>How to build emergency fund</li>
+            <li>Loan and EMI awareness</li>
+            <li>Insurance and tax basics</li>
+            <li>Investment risk awareness</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="basics">
+      <div class="section-title">
+        <h2>Personal Finance Basics</h2>
+        <p>Useful topics for salaried people, small business owners and families.</p>
+      </div>
+      <div class="grid">
+        <article class="card">
+          <span class="tag">Budget</span>
+          <h3>Monthly Budget</h3>
+          <p>Track income and expenses. Keep needs, wants and savings separate. A simple budget helps you avoid unnecessary debt.</p>
+        </article>
+        <article class="card">
+          <span class="tag">Savings</span>
+          <h3>Emergency Fund</h3>
+          <p>Keep 3 to 6 months of basic expenses in safe and liquid options before taking higher investment risk.</p>
+        </article>
+        <article class="card">
+          <span class="tag">Loans</span>
+          <h3>EMI Planning</h3>
+          <p>Before taking a loan, compare interest rate, processing fee, tenure, prepayment rules and total repayment amount.</p>
+        </article>
+        <article class="card">
+          <span class="tag">Insurance</span>
+          <h3>Risk Protection</h3>
+          <p>Health insurance and term insurance protect your family from sudden financial pressure. Insurance is not the same as investment.</p>
+        </article>
+        <article class="card">
+          <span class="tag">Investment</span>
+          <h3>Long-Term Growth</h3>
+          <p>Understand risk, time horizon and diversification before investing. Avoid schemes promising guaranteed double money.</p>
+        </article>
+        <article class="card">
+          <span class="tag">Tax</span>
+          <h3>Tax Awareness</h3>
+          <p>Maintain documents for income, deductions, insurance, investments and business expenses. Consult a qualified tax professional when needed.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="tools">
+      <div class="section-title">
+        <h2>Simple SIP Estimator</h2>
+        <p>This is only an educational calculator. Actual returns are market-linked and not guaranteed.</p>
+      </div>
+      <div class="split">
+        <div class="calculator">
+          <label for="monthly">Monthly Investment (₹)</label>
+          <input id="monthly" type="number" value="5000" min="0" />
+
+          <label for="rate">Expected Annual Return (%)</label>
+          <input id="rate" type="number" value="12" min="0" step="0.1" />
+
+          <label for="years">Time Period (Years)</label>
+          <input id="years" type="number" value="10" min="1" />
+
+          <button class="btn btn-primary" style="border:none;margin-top:18px;cursor:pointer" onclick="calculateSIP()">Calculate</button>
+          <div id="sipResult" class="result">Estimated value will appear here</div>
+        </div>
+        <div class="card">
+          <h3>How to read this calculator</h3>
+          <p>The calculator uses monthly compounding assumption for a regular monthly investment. It is meant only for learning.</p>
+          <p>Before investing, check your goal, risk profile, emergency fund, insurance and existing liabilities.</p>
+          <div class="notice"><strong>Disclaimer:</strong> FinanceIndiaOnline.online does not provide personalized financial, tax or investment advice. Please consult a certified financial advisor before taking decisions.</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="checklist">
+      <div class="section-title">
+        <h2>Money Checklist</h2>
+        <p>Use this as a starting point for personal financial planning.</p>
+      </div>
+      <div class="grid">
+        <div class="card"><h3>Step 1</h3><p>Write your monthly income, fixed expenses, variable expenses and debt EMIs.</p></div>
+        <div class="card"><h3>Step 2</h3><p>Create an emergency fund and avoid using credit cards for unnecessary purchases.</p></div>
+        <div class="card"><h3>Step 3</h3><p>Review insurance, tax documents and investment goals at least once every year.</p></div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="cta">
+        <h2>Finance India Online</h2>
+        <p>For educational articles, tools and finance awareness content.</p>
+        <p><strong>Domain:</strong> financeindiaonline.online</p>
+        <p><strong>Email:</strong> contact@financeindiaonline.online</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2026 Finance India Online. All rights reserved.</p>
+    <p>Educational information only. No guaranteed returns. No personalized financial advice.</p>
+  </footer>
+
+  <script>
+    function formatINR(amount) {
+      return new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(amount);
+    }
+
+    function calculateSIP() {
+      const monthly = Number(document.getElementById('monthly').value || 0);
+      const annualRate = Number(document.getElementById('rate').value || 0);
+      const years = Number(document.getElementById('years').value || 0);
+      const months = years * 12;
+      const monthlyRate = annualRate / 12 / 100;
+      let value = 0;
+
+      if (monthlyRate === 0) {
+        value = monthly * months;
+      } else {
+        value = monthly * (((Math.pow(1 + monthlyRate, months) - 1) / monthlyRate) * (1 + monthlyRate));
+      }
+
+      const invested = monthly * months;
+      const gains = value - invested;
+      document.getElementById('sipResult').innerHTML =
+        'Invested: ' + formatINR(invested) + '<br>Estimated Value: ' + formatINR(value) + '<br>Estimated Gain: ' + formatINR(gains);
+    }
+
+    calculateSIP();
+  </script>
+</body>
+</html>
